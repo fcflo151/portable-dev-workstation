@@ -14,13 +14,16 @@ function Invoke-TestCmd([string]$Path, [string]$InputText) {
     $info = New-Object Diagnostics.ProcessStartInfo
     $info.FileName = $env:ComSpec
     $info.Arguments = '/d /v:off /c ""' + $Path + '""'
+    if ($InputText) {
+        # An ASCII file avoids BOM-dependent StreamWriter defaults on .NET Framework.
+        $inputFile = Join-Path (Split-Path -Parent $Path) ('stdin-' + [guid]::NewGuid().ToString('N') + '.txt')
+        [IO.File]::WriteAllText($inputFile, $InputText + "`r`n", [Text.Encoding]::ASCII)
+        $info.Arguments = '/d /v:off /c ""' + $Path + '" < "' + $inputFile + '""'
+    }
     $info.UseShellExecute = $false
     $info.CreateNoWindow = $true
     $info.RedirectStandardOutput = $true
     $info.RedirectStandardError = $true
-    $info.RedirectStandardInput = $true
-    # Never send a UTF-8 BOM before the synthetic cmd.exe "exit" command.
-    $info.StandardInputEncoding = [Text.UTF8Encoding]::new($false)
     # Fixtures must also work when tests start inside the real portable terminal.
     $info.EnvironmentVariables.Remove('PORTABLE_ENV_ROOT')
     $info.EnvironmentVariables['GH_TOKEN'] = 'synthetic-host-token'
@@ -33,8 +36,6 @@ function Invoke-TestCmd([string]$Path, [string]$InputText) {
     try {
         $stdout = $process.StandardOutput.ReadToEndAsync()
         $stderr = $process.StandardError.ReadToEndAsync()
-        if ($InputText) { $process.StandardInput.WriteLine($InputText) }
-        $process.StandardInput.Close()
         if (-not $process.WaitForExit(30000)) { $process.Kill(); throw 'Test terminal timed out.' }
         $output = $stdout.GetAwaiter().GetResult()
         $errorOutput = $stderr.GetAwaiter().GetResult()
