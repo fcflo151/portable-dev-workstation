@@ -19,6 +19,8 @@ function Invoke-TestCmd([string]$Path, [string]$InputText) {
     $info.RedirectStandardOutput = $true
     $info.RedirectStandardError = $true
     $info.RedirectStandardInput = $true
+    # Never send a UTF-8 BOM before the synthetic cmd.exe "exit" command.
+    $info.StandardInputEncoding = [Text.UTF8Encoding]::new($false)
     # Fixtures must also work when tests start inside the real portable terminal.
     $info.EnvironmentVariables.Remove('PORTABLE_ENV_ROOT')
     $info.EnvironmentVariables['GH_TOKEN'] = 'synthetic-host-token'
