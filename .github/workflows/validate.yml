@@ -24,6 +24,9 @@ jobs:
       - name: Test publication guards
         shell: pwsh
         run: ./Tools/Test-RepositoryChecks.ps1
+      - name: Test optional AI commit pipeline with synthetic local repositories
+        shell: pwsh
+        run: node --test ./Tools/tests/ai-commit.test.cjs
       - name: Validate on Windows PowerShell 5.1
         shell: powershell
         run: ./Tools/Test-Template.ps1 -RequireBackupTests

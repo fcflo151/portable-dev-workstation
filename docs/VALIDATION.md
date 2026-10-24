@@ -78,3 +78,15 @@ Re-run the commands in `DEVELOPMENT.md` after relevant code or upstream changes.
 The pre-publication Chrome review is recorded separately in
 `BROWSER-PRIVACY.md`. It checked storage paths and file metadata without
 reading browser content, deleting host profiles or weakening encryption.
+
+## Optional AI commits, 2026-10-24
+
+Seven Node tests passed for saved-login/free-model requirements, isolated config,
+denied tools/integrations, prompt attachment cleanup, provider rejection without
+paid fallback, private/oversized inputs, generated commit subjects with real local
+Git push, cancellation and changed-file rejection. The provider rejection path
+also completed a local push using the manually supplied fallback subject.
+The template/backup suite and publication guard passed again after this addition.
+The tests do not establish successful authenticated live model access; see
+`AI-COMMITS.md`. The workstation's private browser patches are outside this public
+template and are not distributed with its application data or binaries.

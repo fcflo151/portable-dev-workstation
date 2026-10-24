@@ -165,6 +165,11 @@ Inspect restored files before copying them into a working setup. Keep the passwo
 
 ## Contributing and validation
 
+For reviewed multi-repository commits and pushes, use `Start\Push-Repos.bat`.
+An optional OpenCode CLI login enables per-project commit-message suggestions
+using an explicit free model, with manual fallback and a final `SENDEN` review.
+See [AI commit messages and data handling](docs/AI-COMMITS.md) before enabling it.
+
 For future development sessions, start with [the development guide](docs/DEVELOPMENT.md), which records scope, constraints and validation commands.
 
 See [the validation record](docs/VALIDATION.md) for tested scenarios, repairs and remaining limits.

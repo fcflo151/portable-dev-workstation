@@ -32,6 +32,7 @@ Run from the portable workstation terminal:
 .\Tools\Test-Template.ps1 -RequireBackupTests
 .\Tools\Test-Repository.ps1 -IncludeHistory
 .\Tools\Test-RepositoryChecks.ps1
+node --test .\Tools\tests\ai-commit.test.cjs
 ```
 
 The test discovers `Apps\7Zip\7za.exe` or `Apps\7Zip\7z.exe` first; alternatively,
@@ -63,3 +64,8 @@ Before publication, review the full diff and tracked files as described in
 `docs/SECURITY.md`. Follow `docs/OPERATIONS.md` for GitHub publication. A local
 test run is not evidence that a GitHub workflow has run or that a repository
 has been published.
+
+The optional OpenCode commit-message tests use mocked CLI responses and real
+synthetic local Git remotes under ignored `Data\Temp`. They require Node and Git,
+make no external model or GitHub request, and retain fixtures for local inspection.
+See `AI-COMMITS.md` for provider-access and privacy limits.
