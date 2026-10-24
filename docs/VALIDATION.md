@@ -40,6 +40,8 @@ hash equality, archive-failure cleanup and source/destination junction guards.
   moving the payload into `Apps\Git`; support both UCRT64 and MINGW64 layouts.
 - Quote the displayed workstation path in the batch launcher so `&` does not
   turn part of the path into a command.
+- Use BOM-free ASCII input for terminal tests and clear expected native failure
+  statuses before returning test success to a CI caller.
 - Reject existing links and junctions in managed setup/backup write paths.
 - Distinguish `Data\Backups` from similarly named directories such as
   `Data\Backups-notes`.

@@ -230,3 +230,5 @@ exit /b 2
     Assert (([IO.Path]::GetFullPath($testRoot)).StartsWith($allowed, [StringComparison]::OrdinalIgnoreCase)) 'Unsafe test cleanup path.'
     if (Test-Path -LiteralPath $testRoot) { Remove-Item -LiteralPath $testRoot -Recurse -Force }
 }
+# Expected archiver failures must not leak into a caller's native exit status (CI).
+$global:LASTEXITCODE = 0
