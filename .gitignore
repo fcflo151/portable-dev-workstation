@@ -1,0 +1,82 @@
+# Runtime trees: deny everything except the folder markers.
+/Apps/*
+!/Apps/.gitkeep
+/Data/*
+!/Data/Config/
+/Data/Config/*
+!/Data/Config/.gitkeep
+!/Data/PortableHome/
+/Data/PortableHome/*
+!/Data/PortableHome/.gitkeep
+/GitRepos/
+/Downloads/
+/Backups/
+/work/
+
+# Secrets wherever they are placed. Examples must use synthetic values.
+.env
+.env.*
+!.env.example
+*.kdbx
+*.kdb
+*.keyx
+*.key
+*.pem
+*.pfx
+*.p12
+*.jks
+*.keystore
+id_rsa*
+id_ed25519*
+id_ecdsa*
+.ssh/
+.gnupg/
+.aws/
+.azure/
+.gitconfig
+.git-credentials
+.npmrc
+.pypirc
+credentials.json
+credentials*.json
+*service-account*.json
+token.json
+tokens.json
+secrets.*
+*.local.*
+.mcp-auth/
+auth.json
+hosts.yml
+
+# Browser profiles must never be part of the public template.
+Local State
+History
+Cookies
+Login Data
+Web Data
+Preferences
+Secure Preferences
+Bookmarks
+
+# Logs, archives, binaries and caches.
+*.log
+*.tmp
+*.partial
+*.sqlite
+*.sqlite3
+*.db
+*.bak
+*.7z
+*.zip
+*.exe
+*.msi
+*.dll
+node_modules/
+__pycache__/
+.venv/
+.cache/
+.vscode/
+.idea/
+Thumbs.db
+Desktop.ini
+.DS_Store

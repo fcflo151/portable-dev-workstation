@@ -1,0 +1,17 @@
+name: Bug report
+description: Report a reproducible problem without sharing private data.
+body:
+  - type: textarea
+    id: environment
+    attributes:
+      label: Environment
+      description: Windows version, architecture, PowerShell version and tool versions. Redact personal paths.
+    validations:
+      required: true
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Steps, expected behavior and actual behavior
+      description: Do not include passwords, tokens, SSH keys or private logs.
+    validations:
+      required: true
