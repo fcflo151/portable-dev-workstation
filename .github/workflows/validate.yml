@@ -38,9 +38,9 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        shell: [powershell, pwsh]
+        engine: [powershell.exe, pwsh.exe]
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
       - name: Provision and test a fresh workstation
-        shell: ${{ matrix.shell }}
-        run: ./Tools/Test-OnlineSetup.ps1
+        shell: pwsh
+        run: ./Tools/Test-OnlineSetup.ps1 -ShellPath (Get-Command '${{ matrix.engine }}').Source
