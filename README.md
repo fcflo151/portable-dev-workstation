@@ -25,6 +25,14 @@ This is the public blueprint, not a copy of the private production workstation. 
 
 ## Requirements
 
+Optional WhatsApp Web: `Start\Start-WhatsApp.bat` opens
+[WhatsApp Web](https://web.whatsapp.com/) in its own SSD Chrome app window.
+It requires an existing Chrome installation at `Apps\Browser\chrome-win64\chrome.exe`;
+this template does not download Chrome. Link it from WhatsApp on your phone using
+the QR code. Browser state shares `Data\Browser` and cache uses `Data\Cache\Browser`.
+These private folders stay out of Git. Changing Windows PCs may require linking
+again; the launcher does not erase browser data or guarantee zero host traces.
+
 Windows 10 or 11 on x64, Windows PowerShell 5.1 or PowerShell 7, and a writable local SSD path. Use NTFS where possible. Bootstrap needs HTTPS access to GitHub and nodejs.org. Offline use is possible after provisioning. ARM64 tools must be installed manually; UNC roots are not supported by the batch terminal launcher.
 
 No administrator rights are requested. Host execution policies, application control or organizational restrictions may still prevent use. Do not bypass your organization's policy.
